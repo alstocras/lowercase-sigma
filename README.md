@@ -8,3 +8,6 @@ To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 # Javadoc
 [here](https://alstocras.github.io/lowercase-sigma)
+
+build javadoc using: `./gradlew core:javadoc`
+copy so it actually publishes using `./gradlew core:copyJavadoc`
