@@ -21,6 +21,7 @@ public class Star extends InterstellarObject{
      * @param colour the colour.
      * @param batch SpriteBatch for drawing
      * @param radius radius, to be used with the ShapeRenderer.
+     * @param gravity the gravitational acceleration of the star, in m/s^2.
      */
     public Star(double mass, double volume, Color colour, SpriteBatch batch, double radius, double gravity){
         this.setMass(mass);
