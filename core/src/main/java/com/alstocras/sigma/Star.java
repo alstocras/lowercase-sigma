@@ -22,13 +22,15 @@ public class Star extends InterstellarObject{
      * @param batch SpriteBatch for drawing
      * @param radius radius, to be used with the ShapeRenderer.
      */
-    public Star(double mass, double volume, Color colour, SpriteBatch batch, double radius){
+    public Star(double mass, double volume, Color colour, SpriteBatch batch, double radius, double gravity){
         this.setMass(mass);
         this.setVolume(volume);
         this.setShape(ShapeType.Filled);
         this.setStarColour(colour);
         this.setBatch(batch);
         this.radius = radius;
+        this.setGravity(gravity);
+        //TODO make some actually good sprites
     }
 
     /**
@@ -41,6 +43,7 @@ public class Star extends InterstellarObject{
         this.setY(y);
         this.getBatch().begin();
         this.getShapeRenderer().begin(this.getShape());
+        this.getShapeRenderer().setColor(this.starColour);
         this.getShapeRenderer().circle((float)this.getX(), (float)this.getY(), (float)radius);
         this.getShapeRenderer().end();
         this.getBatch().end();

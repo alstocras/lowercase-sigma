@@ -15,6 +15,7 @@ public class InterstellarObject{
     private double y = 0;
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
+    private double gravity = 0;
 
     public double getMass(){
         return mass;
@@ -70,5 +71,13 @@ public class InterstellarObject{
 
     public void setShapeRenderer(ShapeRenderer shapeRenderer){
         this.shapeRenderer = shapeRenderer;
+    }
+
+    public double getGravity(){
+        return gravity;
+    }
+
+    public void setGravity(double gravity){
+        this.gravity = gravity;
     }
 }
