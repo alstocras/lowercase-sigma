@@ -80,4 +80,5 @@ public class InterstellarObject{
     public void setGravity(double gravity){
         this.gravity = gravity;
     }
+    //TODO make gravity do something
 }

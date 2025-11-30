@@ -35,11 +35,11 @@ public class Star extends InterstellarObject{
     }
 
     /**
-     * Creates the star, at the specified location.
+     * Draws the star, at the specified location.
      * @param x x position
      * @param y y position
      */
-    public void create(double x, double y){
+    public void draw(double x, double y){
         this.setX(x);
         this.setY(y);
         this.getBatch().begin();

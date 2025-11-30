@@ -14,13 +14,13 @@ public class Main extends ApplicationAdapter {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        testStar = new Star(1000, 400, Color.ORANGE, batch, 40, 10);
+        testStar = new Star(1000, 400, Color.ORANGE, batch, 75, 10); // to see if it works
     }
 
     @Override
     public void render() {
         ScreenUtils.clear(0, 0, 0, 1);
-        testStar.create(40, 60);
+        testStar.draw(400, 400);
     }
 
     @Override
