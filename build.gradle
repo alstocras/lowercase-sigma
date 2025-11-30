@@ -70,3 +70,14 @@ subprojects {
 }
 
 eclipse.project.name = 'σσσlowercase-sigma' + '-parent'
+
+subprojects {
+  apply plugin: 'java'
+
+  tasks.register('copyJavadoc', Copy) {
+    dependsOn tasks.named('javadoc')
+
+    from tasks.named('javadoc').get().destinationDir
+    into rootProject.file('docs')
+  }
+}
