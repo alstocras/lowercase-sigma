@@ -4,4 +4,4 @@
 Stylized as σ, though you can just call it 'sigma' or 'lowercase sigma'. Made using LibGDX, and inspired by *Mindustry*, Isaac Asimov's *Foundation*, and physics in general.
 
 # Contributing
-To contribute, see [CONTRIBUTING.md].
+To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
