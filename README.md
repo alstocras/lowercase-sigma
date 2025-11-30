@@ -7,4 +7,4 @@ Stylized as σ, though you can just call it 'sigma' or 'lowercase sigma'. Made u
 To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 # Javadoc
-[here](alstocras.github.io/lowercase-sigma)
+[here](https://alstocras.github.io/lowercase-sigma)
