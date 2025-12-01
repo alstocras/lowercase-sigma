@@ -9,12 +9,12 @@ import com.badlogic.gdx.utils.*;
 public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture image;
-    Star testStar;
+    private Star testStar;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        testStar = new Star(1000, 400, Color.ORANGE, batch, 75, 10); // to see if it works
+        testStar = new Star(1000000000, 1000000, Color.ORANGE, batch); // to see if it works
     }
 
     @Override

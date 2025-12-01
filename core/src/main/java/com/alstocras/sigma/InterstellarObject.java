@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.*;
  */
 public class InterstellarObject{
     private double mass = 0;
-    private double volume = 0;
+    private double density = 0;
     private ShapeType shape = ShapeType.Point;
     private double x = 0;
     private double y = 0;
@@ -25,12 +25,12 @@ public class InterstellarObject{
         this.mass = mass;
     }
 
-    public double getVolume(){
-        return volume;
+    public double getDensity(){
+        return density;
     }
 
-    public void setVolume(double volume){
-        this.volume = volume;
+    public void setDensity(double density){
+        this.density = density;
     }
 
     public ShapeType getShape(){
