@@ -11,6 +11,7 @@ public class Star extends InterstellarObject{
 
     private Color starColour = Color.YELLOW;
     private double radius;
+    private double hydrogenAmountKg = 0; //OK I know it's supposed to be 'kg' not 'Kg' but camelCase demands it
 
     /**
      * Constructor for the star.
@@ -52,5 +53,13 @@ public class Star extends InterstellarObject{
     public void setStarColour(Color starColour){
         this.starColour = starColour;
     }
-    //TODO add logic for the star like fusion and stuff
+
+    public double getHydrogenAmountKg(){
+        return hydrogenAmountKg;
+    }
+
+    public void setHydrogenAmountKg(double hydrogenAmountKg){
+        this.hydrogenAmountKg = hydrogenAmountKg;
+    }
+    //TODO fusion and supernovae
 }
