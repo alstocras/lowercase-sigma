@@ -44,6 +44,9 @@ public class Star extends InterstellarObject{
         this.getShapeRenderer().circle((float)this.getX(), (float)this.getY(), (float)radius);
         this.getShapeRenderer().end();
         this.getBatch().end();
+        for(int i = 0; i < hydrogenAmountKg; i++){
+            --hydrogenAmountKg;
+        }
     }
 
     public Color getStarColour(){
@@ -62,4 +65,5 @@ public class Star extends InterstellarObject{
         this.hydrogenAmountKg = hydrogenAmountKg;
     }
     //TODO fusion and supernovae
+
 }

@@ -10,6 +10,13 @@ public class Element{
         return atomicMass;
     }
 
+    public Element(double mass, double number, String name, double isotope){
+        this.setAtomicMass(mass);
+        this.setAtomicNumber(number);
+        this.setName(name);
+        this.setIsotope(isotope);
+    }
+
     public void setAtomicMass(double atomicMass){
         this.atomicMass = atomicMass;
     }
