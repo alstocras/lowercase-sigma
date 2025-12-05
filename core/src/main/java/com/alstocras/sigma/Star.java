@@ -43,17 +43,19 @@ public class Star extends InterstellarObject{
         this.setY(y);
         this.getBatch().begin();
         font.draw(this.getBatch(), starText, (float)x, (float)y);
+        this.getBatch().end();
         this.getShapeRenderer().begin(this.getShape());
         this.getShapeRenderer().setColor(this.starColour);
         this.getShapeRenderer().circle((float)this.getX(), (float)this.getY(), (float)radius);
         this.getShapeRenderer().end();
-        this.getBatch().end();
-        while(hydrogenAmountKg > 0){
-            --hydrogenAmountKg;
-            Element helium = new Element(4, 2, "Helium", 4);
+    }
+    public void update(float delta) {
+        if (hydrogenAmountKg > 0) {
+            hydrogenAmountKg--;
             starText = "Hydrogen: " + hydrogenAmountKg;
         }
     }
+
 
     public Color getStarColour(){
         return starColour;

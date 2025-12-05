@@ -21,6 +21,7 @@ public class Main extends ApplicationAdapter {
     public void render() {
         ScreenUtils.clear(0, 0, 0, 1);
         testStar.draw(400, 400);
+        testStar.update(Gdx.graphics.getDeltaTime());
     }
 
     @Override
