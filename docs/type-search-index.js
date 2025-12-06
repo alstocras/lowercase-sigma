@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.alstocras.sigma","l":"BlackHole"},{"p":"com.alstocras.sigma","l":"InterstellarObject"},{"p":"com.alstocras.sigma","l":"Main"},{"p":"com.alstocras.sigma","l":"NeutronStar"},{"p":"com.alstocras.sigma","l":"Remnant"},{"p":"com.alstocras.sigma","l":"Star"}];updateSearchResults();
