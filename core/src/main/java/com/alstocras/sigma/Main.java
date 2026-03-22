@@ -24,7 +24,7 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
-        hexRadius = 40;
+        hexRadius = 100;
         batch = new SpriteBatch();
         image = new Texture("libgdx.png");
         shape = new ShapeRenderer();
@@ -32,14 +32,22 @@ public class Main extends ApplicationAdapter {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean scrolled(float amountX, float amountY){
+                Vector3 mouseCoords = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+                Vector3 unprojectedCoords = camera.unproject(mouseCoords);
+                Vector2 vector2UnprojectedCoords = new Vector2(unprojectedCoords.x, unprojectedCoords.y);
                 camera.zoom = (float)Math.max(camera.zoom + amountY * 0.2f, 0.2);
+                camera.update();
+                Vector3 zoomedMouseCoords = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+                Vector3 zoomedUnprojectedCoords = camera.unproject(zoomedMouseCoords);
+                Vector2 vector2ZoomedUnprojectedCoords = new Vector2(zoomedUnprojectedCoords.x, zoomedUnprojectedCoords.y);
+                camera.translate(new Vector2(-vector2ZoomedUnprojectedCoords.x + vector2UnprojectedCoords.x, -vector2ZoomedUnprojectedCoords.y + vector2UnprojectedCoords.y));
                 return true;
             }
 
             @Override
             public boolean touchDragged(int x, int y, int pointer) {
                 if(Gdx.input.isButtonPressed(Buttons.MIDDLE)){
-                    camera.translate(-Gdx.input.getDeltaX() * 2, Gdx.input.getDeltaY() * 5);
+                    camera.translate(-Gdx.input.getDeltaX() * 2, Gdx.input.getDeltaY() * 2);
                 }
                 return true;
             }

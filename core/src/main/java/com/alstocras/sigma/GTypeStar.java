@@ -20,7 +20,5 @@ public class GTypeStar extends MainSequenceStar{
     public void create(int q, int r, ShapeRenderer shape, float hexRadius){
         ArrayList<Vector2> points = HexGridGenerator.hexagonPoints(HexGridGenerator.axialToCartesian(q, r, hexRadius), hexRadius);
         HexGridGenerator.makeFilledHexagon(points, STAR_COLOUR, Main.camera, HexGridGenerator.axialToCartesian(q, r, hexRadius));
-        System.out.println("centre: " + HexGridGenerator.axialToCartesian(q, r, 40));
-        System.out.println("points: " + points);
     }
 }

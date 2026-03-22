@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.*;
 
 import java.util.*;
 
-public class HexGridGenerator{
+public abstract class HexGridGenerator{
 
     static int screenCentreX = Gdx.graphics.getWidth() / 2;
     static int screenCentreY = Gdx.graphics.getHeight() / 2;
