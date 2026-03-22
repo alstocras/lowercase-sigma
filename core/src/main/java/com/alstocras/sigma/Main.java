@@ -17,45 +17,21 @@ public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture image;
     private ShapeRenderer shape;
+    private OrthographicCamera camera;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         image = new Texture("libgdx.png");
         shape = new ShapeRenderer();
-    }
-
-    private ArrayList<Vector2> hexagonPoints(Vector2 centre, double radius){
-        double angle;
-        float newX = 0;
-        float newY = 0;
-        Vector2 currentPoint;
-        ArrayList<Vector2> points = new ArrayList<Vector2>();
-        for(int i = 1; i <= 6; i++){
-            angle = ((Math.PI / 3) * i) - (Math.PI / 6);
-            newX = (float)(centre.x + radius * Math.cos(angle));
-            newY = (float)(centre.y + radius * Math.sin(angle));
-            currentPoint =  new Vector2(newX, newY);
-            points.add(currentPoint);
-        }
-        return points;
-    }
-
-    private void makeHexagon(ArrayList<Vector2> points, Color colour){
-        shape.begin(ShapeType.Line);
-        shape.setColor(colour);
-        for(int i = 0; i < 5; i++){
-            shape.line(points.get(i), points.get(i + 1));
-        }
-        shape.line(points.get(5), points.get(0));
-        shape.end();
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     @Override
     public void render() {
+        camera.update();
         ScreenUtils.clear(0f, 0f, 0f, 1f);
-        ArrayList<Vector2> points = hexagonPoints(new Vector2(160, 160), 40);
-        makeHexagon(points, Color.WHITE);
+        HexGridGenerator.makeHexGrid(100, 100, 40, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, camera);
     }
 
     @Override
@@ -63,5 +39,10 @@ public class Main extends ApplicationAdapter {
         batch.dispose();
         image.dispose();
         shape.dispose();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        camera.setToOrtho(false, width, height);
     }
 }
