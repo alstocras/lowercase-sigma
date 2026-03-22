@@ -1,6 +1,7 @@
 package com.alstocras.sigma;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.Input.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,6 +26,21 @@ public class Main extends ApplicationAdapter {
         image = new Texture("libgdx.png");
         shape = new ShapeRenderer();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean scrolled(float amountX, float amountY){
+                camera.zoom = (float)Math.max(camera.zoom + amountY * 0.2f, 0.2);
+                return true;
+            }
+
+            @Override
+            public boolean touchDragged(int x, int y, int pointer) {
+                if(Gdx.input.isButtonPressed(Buttons.MIDDLE)){
+                    camera.translate(-Gdx.input.getDeltaX() * 5, Gdx.input.getDeltaY() * 5);
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -45,4 +61,6 @@ public class Main extends ApplicationAdapter {
     public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
     }
+
+
 }
