@@ -20,9 +20,11 @@ public class Main extends ApplicationAdapter {
     private ShapeRenderer shape;
     public static OrthographicCamera camera;
     private GTypeStar starterStar;
+    private float hexRadius;
 
     @Override
     public void create() {
+        hexRadius = 40;
         batch = new SpriteBatch();
         image = new Texture("libgdx.png");
         shape = new ShapeRenderer();
@@ -49,8 +51,8 @@ public class Main extends ApplicationAdapter {
     public void render() {
         camera.update();
         ScreenUtils.clear(0f, 0f, 0f, 1f);
-        HexGridGenerator.makeHexGrid(100, 100, 40, camera);
-        starterStar.create(0, 0, shape, 40);
+        HexGridGenerator.makeHexGrid(100, 100, hexRadius, camera);
+        starterStar.create(0, 0, shape, hexRadius);
     }
 
     @Override
