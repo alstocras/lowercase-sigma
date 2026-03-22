@@ -1,6 +1,6 @@
 package com.alstocras.sigma;
 
-public class InterstellarObject{
+public abstract class InterstellarObject{
     double massKilograms = 1;
     double radiusMetres = 1;
     double ageSeconds = 1;

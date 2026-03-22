@@ -1,5 +1,6 @@
 package com.alstocras.sigma;
 
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.glutils.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.*;
@@ -8,6 +9,9 @@ import com.badlogic.gdx.math.*;
 import java.util.*;
 
 public class HexGridGenerator{
+
+    static int screenCentreX = Gdx.graphics.getWidth() / 2;
+    static int screenCentreY = Gdx.graphics.getHeight() / 2;
     static ShapeRenderer shape = new ShapeRenderer();
 
     public static ArrayList<Vector2> hexagonPoints(Vector2 centre, double radius){
@@ -40,16 +44,26 @@ public class HexGridGenerator{
     public static Vector2 axialToCartesian(float q, float r, float hexRadius){
         float x = (float)((Math.sqrt(3) * q) + ((Math.sqrt(3) / 2) * r));
         float y = (float)(1.5 * r);
-        x = x * hexRadius;
-        y = y * hexRadius;
+        x = (x * hexRadius) + screenCentreX;
+        y = (y * hexRadius) + screenCentreY;
         return new Vector2(x, y);
     }
 
-    public static void makeHexGrid(int rows, int cols, float radius, int zeroHexQ, int zeroHexR, OrthographicCamera camera){
+    public static void makeHexGrid(int rows, int cols, float radius, OrthographicCamera camera){
         for(int i = -rows; i < rows; i++){
             for(int j = -cols; j < cols; j++){
-                makeHexagon(hexagonPoints((new Vector2(axialToCartesian(i, j, radius).x += zeroHexQ, axialToCartesian(i, j, radius).y += zeroHexR)), radius), Color.DARK_GRAY, camera);
+                makeHexagon(hexagonPoints(new Vector2(axialToCartesian(i, j, radius)), radius), Color.DARK_GRAY, camera);
             }
         }
+    }
+
+    public static void makeFilledHexagon(ArrayList<Vector2> points, Color colour, OrthographicCamera camera, Vector2 centre){
+        shape.setProjectionMatrix(camera.combined);
+        shape.begin(ShapeType.Filled);
+        shape.setColor(colour);
+        for(int i = 0; i < 6; i++){
+            shape.triangle(points.get(i).x, points.get(i).y, points.get((i + 1) % 6).x, points.get((i + 1) % 6).y, centre.x, centre.y);
+        }
+        shape.end();
     }
 }

@@ -18,7 +18,8 @@ public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture image;
     private ShapeRenderer shape;
-    private OrthographicCamera camera;
+    public static OrthographicCamera camera;
+    private GTypeStar starterStar;
 
     @Override
     public void create() {
@@ -36,18 +37,20 @@ public class Main extends ApplicationAdapter {
             @Override
             public boolean touchDragged(int x, int y, int pointer) {
                 if(Gdx.input.isButtonPressed(Buttons.MIDDLE)){
-                    camera.translate(-Gdx.input.getDeltaX() * 5, Gdx.input.getDeltaY() * 5);
+                    camera.translate(-Gdx.input.getDeltaX() * 2, Gdx.input.getDeltaY() * 5);
                 }
                 return true;
             }
         });
+        starterStar = new GTypeStar(1e8, 1e8);
     }
 
     @Override
     public void render() {
         camera.update();
         ScreenUtils.clear(0f, 0f, 0f, 1f);
-        HexGridGenerator.makeHexGrid(100, 100, 40, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, camera);
+        HexGridGenerator.makeHexGrid(100, 100, 40, camera);
+        starterStar.create(0, 0, shape, 40);
     }
 
     @Override
