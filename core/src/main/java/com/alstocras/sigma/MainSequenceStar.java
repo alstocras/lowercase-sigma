@@ -2,6 +2,10 @@ package com.alstocras.sigma;
 
 public abstract class MainSequenceStar extends Star{
 
+    public MainSequenceStar(AxialCoordinate coord){
+        super(coord);
+    }
+
     public double getLuminosityWattsWithMassKilograms(){
         double luminosity;
         if(this.massKilograms < (0.43 * PhysicsConstants.MASS_OF_SUN_KILOGRAMS_FOR_REFERENCE)){

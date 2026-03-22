@@ -21,6 +21,7 @@ public class Main extends ApplicationAdapter {
     public static OrthographicCamera camera;
     private GTypeStar starterStar;
     private float hexRadius;
+    public static HashMap<AxialCoordinate, InterstellarObject> gridHashMap;
 
     @Override
     public void create() {
@@ -52,7 +53,8 @@ public class Main extends ApplicationAdapter {
                 return true;
             }
         });
-        starterStar = new GTypeStar(1e8, 1e8);
+        gridHashMap = new HashMap<>();
+        starterStar = new GTypeStar(1e8, 1e8, new AxialCoordinate(0, 0));
     }
 
     @Override
@@ -60,7 +62,9 @@ public class Main extends ApplicationAdapter {
         camera.update();
         ScreenUtils.clear(0f, 0f, 0f, 1f);
         HexGridGenerator.makeHexGrid(100, 100, hexRadius, camera);
-        starterStar.create(0, 0, shape, hexRadius);
+        for(InterstellarObject obj : gridHashMap.values()){
+            obj.draw(hexRadius, shape);
+        }
     }
 
     @Override

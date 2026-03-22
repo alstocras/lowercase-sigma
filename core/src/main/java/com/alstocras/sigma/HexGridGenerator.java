@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.*;
 import com.badlogic.gdx.math.*;
 
+import java.lang.reflect.*;
 import java.util.*;
 
 public abstract class HexGridGenerator{
@@ -41,18 +42,27 @@ public abstract class HexGridGenerator{
         shape.end();
     }
 
-    public static Vector2 axialToCartesian(float q, float r, float hexRadius){
-        float x = (float)((Math.sqrt(3) * q) + ((Math.sqrt(3) / 2) * r));
-        float y = (float)(1.5 * r);
+    public static Vector2 axialToCartesian(AxialCoordinate coord, float hexRadius){
+        float x = (float)((Math.sqrt(3) * coord.q) + ((Math.sqrt(3) / 2) * coord.r));
+        float y = (float)(1.5 * coord.r);
         x = (x * hexRadius) + screenCentreX;
         y = (y * hexRadius) + screenCentreY;
         return new Vector2(x, y);
     }
 
+    public static AxialCoordinate cartesianToAxial(Vector2 cartesian, float hexRadius){
+        cartesian.x = (cartesian.x - screenCentreX) / hexRadius;
+        cartesian.y = (cartesian.y - screenCentreY) / hexRadius;
+        int temp = (int)Math.floor(cartesian.x + Math.sqrt(3) * cartesian.y + 1);
+        int q = (int)Math.floor((Math.floor(2 * cartesian.x + 1) + temp) / 3);
+        int r = (int)Math.floor((temp + Math.floor(-cartesian.x + Math.sqrt(3) * cartesian.y + 1)) / 3);
+        return new AxialCoordinate(q, r);
+    }
+
     public static void makeHexGrid(int rows, int cols, float radius, OrthographicCamera camera){
         for(int i = -rows; i < rows; i++){
             for(int j = -cols; j < cols; j++){
-                makeHexagon(hexagonPoints(new Vector2(axialToCartesian(i, j, radius)), radius), Color.DARK_GRAY, camera);
+                makeHexagon(hexagonPoints(new Vector2(axialToCartesian(new AxialCoordinate(i, j), radius)), radius), Color.DARK_GRAY, camera);
             }
         }
     }
