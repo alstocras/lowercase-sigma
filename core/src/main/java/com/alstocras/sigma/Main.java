@@ -3,14 +3,12 @@ package com.alstocras.sigma;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.Input.*;
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.*;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.*;
 
-import java.awt.*;
 import java.util.*;
 
 /** {@link ApplicationListener} implementation shared by all platforms. */
@@ -19,9 +17,9 @@ public class Main extends ApplicationAdapter {
     private Texture image;
     private ShapeRenderer shape;
     public static OrthographicCamera camera;
-    private GTypeStar starterStar;
     private float hexRadius;
     public static HashMap<AxialCoordinate, InterstellarObject> gridHashMap;
+    private InfoPanel propertiesPanel;
 
     @Override
     public void create() {
@@ -30,7 +28,12 @@ public class Main extends ApplicationAdapter {
         image = new Texture("libgdx.png");
         shape = new ShapeRenderer();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        Gdx.input.setInputProcessor(new InputAdapter() {
+        gridHashMap = new HashMap<>();
+        GTypeStar starterStar = new GTypeStar(PhysicsConstants.MASS_OF_SUN_KILOGRAMS_FOR_REFERENCE, 6.96e8, new AxialCoordinate(0, 0));
+        propertiesPanel = new InfoPanel(new ScreenViewport());
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(InfoPanel.stage);
+        multiplexer.addProcessor(new InputAdapter() {
             @Override
             public boolean scrolled(float amountX, float amountY){
                 Vector3 mouseCoords = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -53,8 +56,8 @@ public class Main extends ApplicationAdapter {
                 return true;
             }
         });
-        gridHashMap = new HashMap<>();
-        starterStar = new GTypeStar(1e8, 1e8, new AxialCoordinate(0, 0));
+        Gdx.input.setInputProcessor(multiplexer);
+
     }
 
     @Override
@@ -65,6 +68,7 @@ public class Main extends ApplicationAdapter {
         for(InterstellarObject obj : gridHashMap.values()){
             obj.draw(hexRadius, shape);
         }
+        propertiesPanel.draw();
     }
 
     @Override
@@ -77,6 +81,7 @@ public class Main extends ApplicationAdapter {
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
+        propertiesPanel.stage.getViewport().update(width, height, true);
     }
 
 

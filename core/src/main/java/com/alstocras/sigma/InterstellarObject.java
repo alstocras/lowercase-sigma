@@ -3,9 +3,9 @@ package com.alstocras.sigma;
 import com.badlogic.gdx.graphics.glutils.*;
 
 public abstract class InterstellarObject{
-    double massKilograms = 1;
-    double radiusMetres = 1;
-    double ageSeconds = 1;
+    double massKilograms = 0;
+    double radiusMetres = 0;
+    double ageSeconds = 0;
     AxialCoordinate coordinate = new AxialCoordinate(0, 0);
 
     public double getSchwarzschildRadiusMetres(){

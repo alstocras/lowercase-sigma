@@ -51,6 +51,8 @@ public abstract class HexGridGenerator{
     }
 
     public static AxialCoordinate cartesianToAxial(Vector2 cartesian, float hexRadius){
+        cartesian.x *= (float)(1 / Math.sqrt(3));
+        cartesian.y *= (float)(-1 / Math.sqrt(3));
         cartesian.x = (cartesian.x - screenCentreX) / hexRadius;
         cartesian.y = (cartesian.y - screenCentreY) / hexRadius;
         int temp = (int)Math.floor(cartesian.x + Math.sqrt(3) * cartesian.y + 1);
