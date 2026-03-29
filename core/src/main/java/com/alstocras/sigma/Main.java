@@ -3,7 +3,7 @@ package com.alstocras.sigma;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.Input.*;
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -29,7 +29,7 @@ public class Main extends ApplicationAdapter {
         shape = new ShapeRenderer();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         gridHashMap = new HashMap<>();
-        GTypeStar starterStar = new GTypeStar(PhysicsConstants.MASS_OF_SUN_KILOGRAMS_FOR_REFERENCE, 6.96e8, new AxialCoordinate(0, 0));
+        GTypeStar starterStar = new GTypeStar(PhysicsConstants.MASS_OF_SUN_KILOGRAMS_FOR_REFERENCE, 6.96e8, new AxialCoordinate(0, 0), new Sprite(new Texture("sprites/star-template.png")), batch);
         propertiesPanel = new InfoPanel(new ScreenViewport());
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(InfoPanel.stage);
