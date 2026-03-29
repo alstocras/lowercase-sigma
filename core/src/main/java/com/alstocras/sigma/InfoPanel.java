@@ -20,6 +20,7 @@ public class InfoPanel{
     Label radius;
     Label age;
     Label bodies;
+    Label schwarzschildRadius;
     Window window;
     Label.LabelStyle style;
 
@@ -48,6 +49,9 @@ public class InfoPanel{
         window.row();
         bodies = new Label("0 satellites", style);
         window.add(bodies);
+        window.row();
+        schwarzschildRadius = new Label("schwarzschild radius = 0 m", style);
+        window.add(schwarzschildRadius);
         window.pad(16);
         stage.addActor(window);
     }
@@ -73,10 +77,12 @@ public class InfoPanel{
             double selectedRadius = Main.gridHashMap.get(selectedHex).radiusMetres;
             double selectedAge = Main.gridHashMap.get(selectedHex).ageSeconds;
             double selectedBodies = Main.gridHashMap.get(selectedHex).orbitingBodies;
+            double selectedSchwarzschildRadius = Main.gridHashMap.get(selectedHex).getSchwarzschildRadiusMetres();
             mass.setText("mass = " + String.format("%.2e", selectedMass) + " kg");
             radius.setText("radius = " + String.format("%.2e", selectedRadius) + " m");
             age.setText("age = " + String.format("%.2e", selectedAge) + " s");
             bodies.setText(String.format("%.2e", selectedBodies) + " satellites");
+            schwarzschildRadius.setText("schwarzschild radius = " + String.format("%.2e", selectedSchwarzschildRadius) + " m");
             window.pack();
         }else{
             window.setVisible(false);
