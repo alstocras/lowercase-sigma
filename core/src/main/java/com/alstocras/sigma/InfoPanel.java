@@ -22,9 +22,6 @@ public class InfoPanel{
         parameter.kerning = true;
         font = generator.generateFont(parameter);
         generator.dispose();
-    }
-
-    public void draw(){
         Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
         Window.WindowStyle windowStyle = new Window.WindowStyle();
         windowStyle.titleFont = font;
@@ -35,6 +32,9 @@ public class InfoPanel{
         window.pad(16);
         window.add(new Label("more text", style));
         stage.addActor(window);
+    }
+
+    public void draw(){
         stage.act();
         stage.draw();
     }

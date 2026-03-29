@@ -35,16 +35,16 @@ public class Main extends ApplicationAdapter {
         multiplexer.addProcessor(InfoPanel.stage);
         multiplexer.addProcessor(new InputAdapter() {
             @Override
-            public boolean scrolled(float amountX, float amountY){
-                Vector3 mouseCoords = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-                Vector3 unprojectedCoords = camera.unproject(mouseCoords);
+            public boolean scrolled(float amountX, float amountY){ //zooming function
+                Vector3 mouseCoords = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0); // gets mouse coords
+                Vector3 unprojectedCoords = camera.unproject(mouseCoords); // unprojects them into world space
                 Vector2 vector2UnprojectedCoords = new Vector2(unprojectedCoords.x, unprojectedCoords.y);
-                camera.zoom = (float)Math.max(camera.zoom + amountY * 0.2f, 0.2);
+                camera.zoom = (float)Math.max(camera.zoom + amountY * 0.2f, 0.2); // zoom in
                 camera.update();
-                Vector3 zoomedMouseCoords = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-                Vector3 zoomedUnprojectedCoords = camera.unproject(zoomedMouseCoords);
+                Vector3 zoomedMouseCoords = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0); // gets new mouse coords
+                Vector3 zoomedUnprojectedCoords = camera.unproject(zoomedMouseCoords); // unprojects
                 Vector2 vector2ZoomedUnprojectedCoords = new Vector2(zoomedUnprojectedCoords.x, zoomedUnprojectedCoords.y);
-                camera.translate(new Vector2(-vector2ZoomedUnprojectedCoords.x + vector2UnprojectedCoords.x, -vector2ZoomedUnprojectedCoords.y + vector2UnprojectedCoords.y));
+                camera.translate(new Vector2(-vector2ZoomedUnprojectedCoords.x + vector2UnprojectedCoords.x, -vector2ZoomedUnprojectedCoords.y + vector2UnprojectedCoords.y)); // gets difference to move cam
                 return true;
             }
 
@@ -61,7 +61,7 @@ public class Main extends ApplicationAdapter {
     }
 
     @Override
-    public void render() {
+    public void render(){
         camera.update();
         ScreenUtils.clear(0f, 0f, 0f, 1f);
         HexGridGenerator.makeHexGrid(100, 100, hexRadius, camera);
