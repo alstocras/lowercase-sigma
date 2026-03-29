@@ -17,7 +17,7 @@ public class Main extends ApplicationAdapter {
     private Texture image;
     private ShapeRenderer shape;
     public static OrthographicCamera camera;
-    private float hexRadius;
+    public static float hexRadius;
     public static HashMap<AxialCoordinate, InterstellarObject> gridHashMap;
     private InfoPanel propertiesPanel;
 
