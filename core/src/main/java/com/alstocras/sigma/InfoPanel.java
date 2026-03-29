@@ -35,15 +35,15 @@ public class InfoPanel{
         windowStyle.titleFont = font;
         windowStyle.background = new BaseDrawable();
         windowStyle.titleFontColor = RenderConstants.LIGHT_CERN_BLUE;
-        window = new Window("Properties", windowStyle);
+        window = new Window("Properties:", windowStyle);
         window.row();
-        mass = new Label("0 kg", style);
+        mass = new Label("mass = 0 kg", style);
         window.add(mass);
         window.row();
-        radius = new Label("0 m", style);
+        radius = new Label("radius = 0 m", style);
         window.add(radius);
         window.row();
-        age = new Label("0 s", style);
+        age = new Label("age = 0 s", style);
         window.add(age);
         window.row();
         bodies = new Label("0 satellites", style);
@@ -68,14 +68,14 @@ public class InfoPanel{
         System.out.println(HexGridGenerator.axialToCartesian(new AxialCoordinate(0, 0), Main.hexRadius));
         if(Main.gridHashMap.containsKey(selectedHex)){
             window.setVisible(true);
-            window.setPosition(mousePos.x + Main.hexRadius, mousePos.y);
+            window.setPosition(mousePos.x + Main.hexRadius, mousePos.y - Main.hexRadius);
             double selectedMass = Main.gridHashMap.get(selectedHex).massKilograms;
             double selectedRadius = Main.gridHashMap.get(selectedHex).radiusMetres;
             double selectedAge = Main.gridHashMap.get(selectedHex).ageSeconds;
             double selectedBodies = Main.gridHashMap.get(selectedHex).orbitingBodies;
-            mass.setText(String.format("%.2e", selectedMass) + " kg");
-            radius.setText(String.format("%.2e", selectedRadius) + " m");
-            age.setText(String.format("%.2e", selectedAge) + " s");
+            mass.setText("mass = " + String.format("%.2e", selectedMass) + " kg");
+            radius.setText("radius = " + String.format("%.2e", selectedRadius) + " m");
+            age.setText("age = " + String.format("%.2e", selectedAge) + " s");
             bodies.setText(String.format("%.2e", selectedBodies) + " satellites");
             window.pack();
         }else{

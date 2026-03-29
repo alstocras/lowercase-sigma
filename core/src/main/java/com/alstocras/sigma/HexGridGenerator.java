@@ -76,4 +76,9 @@ public abstract class HexGridGenerator{
         }
         shape.end();
     }
+
+    public static void resize(int width, int height){
+        HexGridGenerator.screenCentreX = width / 2;
+        HexGridGenerator.screenCentreY = height / 2;
+    }
 }

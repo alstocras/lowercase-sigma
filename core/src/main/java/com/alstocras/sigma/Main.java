@@ -82,6 +82,7 @@ public class Main extends ApplicationAdapter {
     public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
         propertiesPanel.stage.getViewport().update(width, height, true);
+        HexGridGenerator.resize(width, height);
     }
 
 
