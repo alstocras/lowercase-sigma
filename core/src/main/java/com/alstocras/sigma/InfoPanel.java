@@ -2,6 +2,7 @@ package com.alstocras.sigma;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Pixmap.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.*;
 import com.badlogic.gdx.math.*;
@@ -17,25 +18,37 @@ public class InfoPanel{
     BitmapFont font;
     Label mass;
     Label radius;
+    Label age;
+    Label bodies;
     Window window;
+    Label.LabelStyle style;
 
     public InfoPanel(ScreenViewport screenViewport){
         this.stage = new Stage(screenViewport);
-        parameter.size = 20;
+        parameter.size = 30;
         parameter.mono = false;
         parameter.kerning = true;
         font = generator.generateFont(parameter);
         generator.dispose();
-        Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
+        style = new Label.LabelStyle(font, RenderConstants.LIGHT_CERN_BLUE);
         Window.WindowStyle windowStyle = new Window.WindowStyle();
         windowStyle.titleFont = font;
         windowStyle.background = new BaseDrawable();
+        windowStyle.titleFontColor = RenderConstants.LIGHT_CERN_BLUE;
         window = new Window("Properties", windowStyle);
-        mass = new Label("234 kg", style);
+        window.row();
+        mass = new Label("0 kg", style);
         window.add(mass);
         window.row();
+        radius = new Label("0 m", style);
+        window.add(radius);
+        window.row();
+        age = new Label("0 s", style);
+        window.add(age);
+        window.row();
+        bodies = new Label("0 satellites", style);
+        window.add(bodies);
         window.pad(16);
-        window.add(new Label("more text", style));
         stage.addActor(window);
     }
 
@@ -56,6 +69,15 @@ public class InfoPanel{
         if(Main.gridHashMap.containsKey(selectedHex)){
             window.setVisible(true);
             window.setPosition(mousePos.x + Main.hexRadius, mousePos.y);
+            double selectedMass = Main.gridHashMap.get(selectedHex).massKilograms;
+            double selectedRadius = Main.gridHashMap.get(selectedHex).radiusMetres;
+            double selectedAge = Main.gridHashMap.get(selectedHex).ageSeconds;
+            double selectedBodies = Main.gridHashMap.get(selectedHex).orbitingBodies;
+            mass.setText(String.format("%.2e", selectedMass) + " kg");
+            radius.setText(String.format("%.2e", selectedRadius) + " m");
+            age.setText(String.format("%.2e", selectedAge) + " s");
+            bodies.setText(String.format("%.2e", selectedBodies) + " satellites");
+            window.pack();
         }else{
             window.setVisible(false);
         }

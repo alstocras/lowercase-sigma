@@ -6,6 +6,7 @@ public abstract class InterstellarObject{
     double massKilograms = 0;
     double radiusMetres = 0;
     double ageSeconds = 0;
+    int orbitingBodies = 0;
     AxialCoordinate coordinate = new AxialCoordinate(0, 0);
 
     public double getSchwarzschildRadiusMetres(){
