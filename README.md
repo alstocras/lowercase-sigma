@@ -8,6 +8,8 @@ Some things to note:
 * The graphics in this game are *simple and minimalist*. I shall not have sprites with hyper-realistic art.
 * The physics *are* accurate, even though the representation is not. This is a strategy game, not an art showcase.
 
+idk why i wrote all of this when the game doesnt even have *any* kind of physics yet except schwarzschild radius calculation
+
 ## Libgdx stuff
 
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
